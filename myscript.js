@@ -6,34 +6,33 @@ function onReady() {
     $('#generateButton').on('click', countClick);
     $("#pageBody").on("click", '#delete-button', removeDiv);
     $("#pageBody").on("click", '#yellow-button', makeYellow);
+
 }
 
 let clickCount = 0
 
-function appendDiv() {
+function appendDiv(event) {
     
-    
+    event.preventDefault();
+
     $("#pageBody").append(`      
-    <body>
-        <div class="addDiv">This is a new div!
+        <div class="addDiv">
             <p class="addP"></p>
             <button id="yellow-button">YELLOW</button>
             <button id="delete-button">DELETE</button>
         </div>
-    </body>
+        <div></div>
       `);
-
 }
 
 function makeYellow() {
-    $('.addDiv').css("background-color", "yellow");
-}
-
-function countClick() {
-    clickCount++;
-    $('.addP').text(clickCount);
+    $(this).parent().css("background-color", "yellow");
 }
 
 function removeDiv() {
     $(this).parent().remove();
+}
+function countClick() {
+    clickCount++;
+    $('.addP').text(clickCount);
 }
